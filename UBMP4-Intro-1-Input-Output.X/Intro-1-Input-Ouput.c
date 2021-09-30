@@ -67,20 +67,20 @@ int main(void)
  * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
  *    Do the LEDs keep flashing when SW2 is held? Look at the program and
  *    explain why this happens when SW2 is held.
- * 
+ * Once. This is because by the time it is released, the loop won't be done looping yet
  * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
- * 
+ * 0 means low and 1 means high. When it's high, the light is on.
  * 3. What voltage do you expect the microcontroller to output to LED D3 when
  *    the statement LED3 = 0; runs? What voltage do you expect the output to be
  *    when the statement LED3 = 1; runs?
- * 
+ * I would expect the low voltage to be 0 and the high voltage will be 5V.
  *    You can confirm the output voltage with a voltmeter if you have access
  *    to one. If you tried that, did the voltage match your prediction?
- * 
+ * It is 1.92V high and that does not match my prediction.
  * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
  *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
  *    equal sign? What operation is performed by two equal signs?
- * 
+ * Assignment uses 1 = and comparison uses 2 = (==)
  * 5. The following program code includes instructions that write to the PORTC
  *    output latches directly. Try it by copying and pasting this code below
  *    the existing SW2 'if' structure, at the location shown by the comment.
@@ -190,7 +190,7 @@ int main(void)
  * 
  *    Can the delay be made even longer? Try 1000 ms. How big can the delay be
  *    before MPLAB-X produces an error message? (Hint: can you think of a fast
- *    and efficient way of guessing an unknown number?)
+ *    and efficient way of guessing an unknown number?) 4205ms
  * 
  * 2. The '__delay_ms();' function only accepts integers as delay values. To
  *    make delays shorter than 1ms, specify a delay in microseconds using the
