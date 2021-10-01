@@ -6,18 +6,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "112
 [; ;./UBMP4.h: 112: void UBMP4_config(void);
 [v _UBMP4_config `(v ~T0 @X0 0 ef ]
-"480 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h: 480:     struct {
-[s S36 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S36 . . RB4 RB5 RB6 RB7 ]
-"479
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h: 479: typedef union {
-[u S35 `S36 1 ]
-[n S35 . . ]
-"488
-[; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h: 488: extern volatile PORTBbits_t PORTBbits __attribute__((address(0x00D)));
-[v _PORTBbits `VS35 ~T0 @X0 0 e@13 ]
-"1872
+"1872 C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h
 [; ;C:/Program Files/Microchip/MPLABX/v5.50/packs/Microchip/PIC12-16F1xxx_DFP/1.2.63/xc8\pic\include\proc\pic16f1459.h: 1872:     struct {
 [s S103 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S103 . . LATA4 LATA5 ]
@@ -493,79 +482,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 329 ]
 {
 "32
-[; ;Intro-1-Input-Ouput.c: 32:         if(PORTBbits.RB4 == 0) {
-[e $ ! == -> . . _PORTBbits 0 1 `i -> 0 `i 331  ]
-{
+[; ;Intro-1-Input-Ouput.c: 32:         LATAbits.LATA5 = !LATAbits.LATA5;
+[e = . . _LATAbits 0 2 -> -> ! != -> . . _LATAbits 0 2 `i -> 0 `i `i `uc ]
 "33
-[; ;Intro-1-Input-Ouput.c: 33:             LATAbits.LATA4 = !LATAbits.LATA4;
-[e = . . _LATAbits 0 1 -> -> ! != -> . . _LATAbits 0 1 `i -> 0 `i `i `uc ]
-"34
-[; ;Intro-1-Input-Ouput.c: 34:             _delay((unsigned long)((567*4)*(48000000/4000000.0)));
-[e ( __delay (1 -> * -> * -> 567 `i -> 4 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-"35
-[; ;Intro-1-Input-Ouput.c: 35:         }
-}
-[e :U 331 ]
+[; ;Intro-1-Input-Ouput.c: 33:         _delay((unsigned long)((100)*(48000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 48000000 `l `d .4000.0 `ul ]
 "36
-[; ;Intro-1-Input-Ouput.c: 36:         if(PORTBbits.RB5 == 0) {
-[e $ ! == -> . . _PORTBbits 0 2 `i -> 0 `i 332  ]
+[; ;Intro-1-Input-Ouput.c: 36:         if (PORTAbits.RA3 == 0) {
+[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 331  ]
 {
 "37
-[; ;Intro-1-Input-Ouput.c: 37:             LATAbits.LATA4 = !LATAbits.LATA4;
-[e = . . _LATAbits 0 1 -> -> ! != -> . . _LATAbits 0 1 `i -> 0 `i `i `uc ]
-"38
-[; ;Intro-1-Input-Ouput.c: 38:             _delay((unsigned long)((567*3)*(48000000/4000000.0)));
-[e ( __delay (1 -> * -> * -> 567 `i -> 3 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-"39
-[; ;Intro-1-Input-Ouput.c: 39:         }
-}
-[e :U 332 ]
-"40
-[; ;Intro-1-Input-Ouput.c: 40:         if(PORTBbits.RB6 == 0) {
-[e $ ! == -> . . _PORTBbits 0 3 `i -> 0 `i 333  ]
-{
-"41
-[; ;Intro-1-Input-Ouput.c: 41:             LATAbits.LATA4 = !LATAbits.LATA4;
-[e = . . _LATAbits 0 1 -> -> ! != -> . . _LATAbits 0 1 `i -> 0 `i `i `uc ]
-"42
-[; ;Intro-1-Input-Ouput.c: 42:             _delay((unsigned long)((567*2)*(48000000/4000000.0)));
-[e ( __delay (1 -> * -> * -> 567 `i -> 2 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-"43
-[; ;Intro-1-Input-Ouput.c: 43:         }
-}
-[e :U 333 ]
-"44
-[; ;Intro-1-Input-Ouput.c: 44:         if(PORTBbits.RB7 == 0) {
-[e $ ! == -> . . _PORTBbits 0 4 `i -> 0 `i 334  ]
-{
-"45
-[; ;Intro-1-Input-Ouput.c: 45:             LATAbits.LATA4 = !LATAbits.LATA4;
-[e = . . _LATAbits 0 1 -> -> ! != -> . . _LATAbits 0 1 `i -> 0 `i `i `uc ]
-"46
-[; ;Intro-1-Input-Ouput.c: 46:             _delay((unsigned long)((567)*(48000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 567 `i `d / -> -> 48000000 `l `d .4000000.0 `ul ]
-"47
-[; ;Intro-1-Input-Ouput.c: 47:         }
-}
-[e :U 334 ]
-"50
-[; ;Intro-1-Input-Ouput.c: 50:         if (PORTAbits.RA3 == 0) {
-[e $ ! == -> . . _PORTAbits 0 3 `i -> 0 `i 335  ]
-{
-"51
-[; ;Intro-1-Input-Ouput.c: 51:             __asm("reset");
+[; ;Intro-1-Input-Ouput.c: 37:             __asm("reset");
 [; <" reset ;# ">
-"52
-[; ;Intro-1-Input-Ouput.c: 52:         }
+"38
+[; ;Intro-1-Input-Ouput.c: 38:         }
 }
-[e :U 335 ]
-"53
-[; ;Intro-1-Input-Ouput.c: 53:     }
+[e :U 331 ]
+"39
+[; ;Intro-1-Input-Ouput.c: 39:     }
 }
 [e :U 328 ]
 [e $U 329  ]
 [e :U 330 ]
-"54
-[; ;Intro-1-Input-Ouput.c: 54: }
+"40
+[; ;Intro-1-Input-Ouput.c: 40: }
 [e :UE 327 ]
 }

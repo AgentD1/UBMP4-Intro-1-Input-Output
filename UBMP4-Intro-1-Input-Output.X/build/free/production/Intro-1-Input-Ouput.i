@@ -4108,22 +4108,8 @@ int main(void) {
 
 
     while (1) {
-        if(PORTBbits.RB4 == 0) {
-            LATAbits.LATA4 = !LATAbits.LATA4;
-            _delay((unsigned long)((567*4)*(48000000/4000000.0)));
-        }
-        if(PORTBbits.RB5 == 0) {
-            LATAbits.LATA4 = !LATAbits.LATA4;
-            _delay((unsigned long)((567*3)*(48000000/4000000.0)));
-        }
-        if(PORTBbits.RB6 == 0) {
-            LATAbits.LATA4 = !LATAbits.LATA4;
-            _delay((unsigned long)((567*2)*(48000000/4000000.0)));
-        }
-        if(PORTBbits.RB7 == 0) {
-            LATAbits.LATA4 = !LATAbits.LATA4;
-            _delay((unsigned long)((567)*(48000000/4000000.0)));
-        }
+        LATAbits.LATA5 = !LATAbits.LATA5;
+        _delay((unsigned long)((100)*(48000000/4000.0)));
 
 
         if (PORTAbits.RA3 == 0) {

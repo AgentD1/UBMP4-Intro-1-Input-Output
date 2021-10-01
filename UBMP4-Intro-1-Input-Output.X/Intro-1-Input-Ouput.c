@@ -29,22 +29,8 @@ int main(void) {
 
     // Code in this while loop runs repeatedly.
     while (1) {
-        if(SW2 == 0) {
-            BEEPER = !BEEPER;
-            __delay_us(567*4);
-        }
-        if(SW3 == 0) {
-            BEEPER = !BEEPER;
-            __delay_us(567*3);
-        }
-        if(SW4 == 0) {
-            BEEPER = !BEEPER;
-            __delay_us(567*2);
-        }
-        if(SW5 == 0) {
-            BEEPER = !BEEPER;
-            __delay_us(567);
-        }
+        LED1 = !LED1;
+        __delay_ms(100);
 
         // Activate bootloader if SW1 is pressed.
         if (SW1 == 0) {
@@ -234,17 +220,22 @@ int main(void) {
  *    one button is held. Do all of the patterns try to flash the LEDs at the
  *    same time, or sequentially? Explain why this is.
  * Only 1 plays at a time. This is because the outer while loop does not run 
- * while one of the switches is pressed, so it does not run the other patterms
+ * while one of the switches is pressed, so it does not run the other patterns
  * 5. Create a program that makes a different tone for each pushbutton.
  * 
  *    Test each tone by pressing each button individually. Next, press two or
  *    more buttons at the same time. Describe what the tone waveform would look
  *    like when more than one button is held.
  * 
+ * When two or more buttons are held, the buzzer makes strange tones. The waveform 
+ * must be quickly moving between the different individual tones
+ * 
  * 6. Use individual 'if' structures to simulate 'Start' and 'Stop' buttons for
  *    an industrial machine. LED D4 should turn on when SW3 is pressed, stay on
  *    even after SW3 is released, and turn off when SW4 is pressed. Test your
  *    program to make sure it works.
+ * 
+ * It does
  * 
  * 7. Running your program from 6, above, describe what happens when both SW3
  *    and SW4 are pressed. Does LED D4 stay on? If so, how does the brightness
@@ -252,11 +243,15 @@ int main(void) {
  *    to this new state when both SW3 and SW4 are bing held? Can you explain
  *    why it changes?
  * 
+ * It dims. This is likely because it quickly toggles between off and on.
+ * 
  * 8. As you can imagine, an industrial machine that is able to turn on even
  *    while its 'Stop' button is pressed represents a significant safety hazard.
  *    Using a logical conditional operator, modify the start-stop program from
  *    activity 5 to make it safer. SW3 should only turn on LED D4 if SW4 is
  *    released.
+ * 
+ * Ok
  * 
  * 9. LED D1 is normally used to indicate that a program is running, but it can
  *    be controlled by your program as well. If you take a look at the UBMP4
@@ -264,4 +259,6 @@ int main(void) {
  *    connected to the microcontroller instead of the anode (positive) pin as
  *    with the other LEDs. This means that you need to make D1's output a zero
  *    to turn D1 on. Try it! Make a program that controls or flashes LED D1.
+ * 
+ * Cool and good
  */
