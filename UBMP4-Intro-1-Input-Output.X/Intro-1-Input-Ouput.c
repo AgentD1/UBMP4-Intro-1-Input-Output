@@ -22,41 +22,32 @@
 
 // The main function is required, and the program begins executing from here.
 
-int main(void)
-{
+int main(void) {
     // Configure oscillator and I/O ports. These functions run once at start-up.
-    OSC_config();               // Configure internal oscillator for 48 MHz
-    UBMP4_config();             // Configure on-board UBMP4 I/O devices
-	
+    OSC_config(); // Configure internal oscillator for 48 MHz
+    UBMP4_config(); // Configure on-board UBMP4 I/O devices
+
     // Code in this while loop runs repeatedly.
-    while(1)
-	{
-        // If SW2 is pressed, make a flashy light pattern
-        if(SW2 == 0)
-        {
-            LED3 = 1;
-            __delay_ms(100);
-            LED4 = 1;
-            __delay_ms(100);
-            LED5 = 1;
-            __delay_ms(100);
-            LED6 = 1;
-            __delay_ms(100);
-            LED3 = 0;
-            __delay_ms(100);
-            LED4 = 0;
-            __delay_ms(100);
-            LED5 = 0;
-            __delay_ms(100);
-            LED6 = 0;
-            __delay_ms(100);
+    while (1) {
+        if(SW2 == 0) {
+            BEEPER = !BEEPER;
+            __delay_us(567*4);
         }
-        
-        // Add code for your Program Analysis and Programming Activities here:
+        if(SW3 == 0) {
+            BEEPER = !BEEPER;
+            __delay_us(567*3);
+        }
+        if(SW4 == 0) {
+            BEEPER = !BEEPER;
+            __delay_us(567*2);
+        }
+        if(SW5 == 0) {
+            BEEPER = !BEEPER;
+            __delay_us(567);
+        }
 
         // Activate bootloader if SW1 is pressed.
-        if(SW1 == 0)
-        {
+        if (SW1 == 0) {
             RESET();
         }
     }
@@ -76,7 +67,7 @@ int main(void)
  * I would expect the low voltage to be 0 and the high voltage will be 5V.
  *    You can confirm the output voltage with a voltmeter if you have access
  *    to one. If you tried that, did the voltage match your prediction?
- * It is 1.92V high and that does not match my prediction.
+ * It is 5.12V high and that does match my prediction.
  * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
  *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
  *    equal sign? What operation is performed by two equal signs?
@@ -96,7 +87,9 @@ int main(void)
  *    What happens when pushbutton SW3 is pressed? Identify at least one
  *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
  *    rather than through individual 'LEDn = x;' statements.
- * 
+ * When SW3 is pressed, the LEDs flash off, then they go on and remain on
+ * One advantage to using LATC is that it's faster and easier than using 4 seperate LEDn statements.
+ * One disadvantage to using LATC is that it modifies all LEDs
  * 6. Next, compare the operation of 'if' and 'while' structures to simulate
  *    momentary buttons. Replace the code you added in 5, above, with this code:
 
@@ -121,11 +114,12 @@ int main(void)
  * 
  *    Next, press and hold SW3 while pressing and releasing SW4. Does it work
  *    as expected?
- * 
+ * It doesn't work as I would expect
  *    Next, try press and holding SW4 while pressing and releasing SW3. Does it
  *    work as expected? Explain the difference in operation between the 'if' and
  *    'while' structures making up the momentary button code.
- * 
+ * It also doesn't work as expected
+ * The while code will block the program from continuing the outer loop until the SW4 is released, while the if does not.
  * 7. Let's explore logical conditions using 'if' statements. Replace the code
  *    added in 6, above, with this nested if code to make a logical AND
  *    condition that will light LED D4 only if both SW3 and SW4 are pressed:
@@ -149,7 +143,7 @@ int main(void)
 
  *    Test the code to ensure it works as expected. Does the order of the if
  *    conditions matter? (eg. swap the conditional checks for SW3 and SW4)
- * 
+ * The order of the conditions doesn't matter in this case
  * 8. Next, replace the code from 7 with the following code which implements a
  *    logical AND conditional operator composed of two ampersands '&&':
  
@@ -166,7 +160,8 @@ int main(void)
  *    Does '&&' work the same way as the nested if structures? Can you think of
  *    at least one advantage of using a logical conditional operator instead of
  *    nested if structures?
- * 
+ * This works the same
+ * This is simpler because there's only 1 else, and it reduces indentation level by 1. It's also shorter
  * 9. Replace the double ampersand '&&' with double vertical bars '||)' to make
  *    a logical OR conditional operator. Your code should look like this:
   
@@ -181,7 +176,7 @@ int main(void)
         }
 
  *    Describe the conditions under which LED4 turns on.
- * 
+ * It turns on if either of the switches is pressed
  * 
  * Programming Activities
  * 
@@ -190,7 +185,9 @@ int main(void)
  * 
  *    Can the delay be made even longer? Try 1000 ms. How big can the delay be
  *    before MPLAB-X produces an error message? (Hint: can you think of a fast
- *    and efficient way of guessing an unknown number?) 4205ms
+ *    and efficient way of guessing an unknown number?) 
+ * 
+ * 4205ms is the max
  * 
  * 2. The '__delay_ms();' function only accepts integers as delay values. To
  *    make delays shorter than 1ms, specify a delay in microseconds using the
@@ -211,6 +208,8 @@ int main(void)
  *    Does the pitch of the tone increase or decrease if the delay value is
  *    made smaller?
  * 
+ * Increasing the delay decreases the pitch
+ * 
  * 3. This code demonstrates a more compact way of toggling the beeper output
  *    using a logical NOT operator '!'. Replace the code above, with this code:
  
@@ -226,14 +225,16 @@ int main(void)
  *    be in after this code runs? While one advantage of this method is smaller
  *    code, can you think of one or more disadvantages based on its output when
  *    the button is released?
- * 
+ * The BEEPER is inverted. This means it can be left on HIGH some of the time. 
+ * This doesn't seem to matter with the beeper, but it would with an LED.
  * 4. Using modified versions of the original SW2 'if' structure, create a
  *    program that makes a unique LED flashing pattern for each pushbutton.
  * 
  *    Test each of your flashing patterns. Describe what happens when more than
  *    one button is held. Do all of the patterns try to flash the LEDs at the
  *    same time, or sequentially? Explain why this is.
- * 
+ * Only 1 plays at a time. This is because the outer while loop does not run 
+ * while one of the switches is pressed, so it does not run the other patterms
  * 5. Create a program that makes a different tone for each pushbutton.
  * 
  *    Test each tone by pressing each button individually. Next, press two or
