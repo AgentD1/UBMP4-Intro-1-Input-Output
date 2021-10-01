@@ -4101,41 +4101,32 @@ unsigned char ADC_read_channel(unsigned char);
 
 
 
-int main(void)
-{
+int main(void) {
 
     OSC_config();
     UBMP4_config();
 
 
-    while(1)
- {
-
-        if(PORTBbits.RB4 == 0)
-        {
-            LATCbits.LATC4 = 1;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC5 = 1;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC6 = 1;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC7 = 1;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC4 = 0;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC5 = 0;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC6 = 0;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
-            LATCbits.LATC7 = 0;
-            _delay((unsigned long)((100)*(48000000/4000.0)));
+    while (1) {
+        if(PORTBbits.RB4 == 0) {
+            LATAbits.LATA4 = !LATAbits.LATA4;
+            _delay((unsigned long)((567*4)*(48000000/4000000.0)));
+        }
+        if(PORTBbits.RB5 == 0) {
+            LATAbits.LATA4 = !LATAbits.LATA4;
+            _delay((unsigned long)((567*3)*(48000000/4000000.0)));
+        }
+        if(PORTBbits.RB6 == 0) {
+            LATAbits.LATA4 = !LATAbits.LATA4;
+            _delay((unsigned long)((567*2)*(48000000/4000000.0)));
+        }
+        if(PORTBbits.RB7 == 0) {
+            LATAbits.LATA4 = !LATAbits.LATA4;
+            _delay((unsigned long)((567)*(48000000/4000000.0)));
         }
 
 
-
-
-        if(PORTAbits.RA3 == 0)
-        {
+        if (PORTAbits.RA3 == 0) {
             __asm("reset");
         }
     }
